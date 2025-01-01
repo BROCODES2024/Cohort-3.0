@@ -1,4 +1,6 @@
 const express = require("express");
+const mongoose = require("mongoose");
+require("dotenv").config();
 const { userrouter } = require("./routes/user");
 const { courserouter } = require("./routes/course");
 const { adminrouter } = require("./routes/admin");
@@ -14,7 +16,13 @@ app.use("/api/v1/user", userrouter);
 app.use("/api/v1/admin", adminrouter);
 app.use("/api/v1/course", courserouter);
 
-app.listen(3000);
+async function main() {
+  await mongoose.connect(process.env.db_url2);
+  console.log("connected");
+  app.listen(3000);
+  console.log("listening on 3000");
+}
+main();
 
 // app.post("/alogin", async (req, res) => {});
 // app.post("/asignup", async (req, res) => {});
