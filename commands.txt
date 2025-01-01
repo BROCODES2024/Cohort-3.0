@@ -1,0 +1,14 @@
+linux commands:
+
+pwd: displays the full path of the current working directory
+cd: changes the current directory of the terminal(ex cd .. (goes back) cd week5(goes to week 5))
+ls: lists files and directories in a specified directory
+mkdir: used to create new directories, or folders, in the Linux file system (ex mkdir week 10)
+touch: It is used to create a file without any content(ex touch chetan.js)
+cat: used to read, display, and concatenate files
+mv: move files
+cp: copy files
+
+node commands:
+npm(enter in terminal to see the commands it provides ex npm install express)
+node (//y)

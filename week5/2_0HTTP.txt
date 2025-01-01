@@ -1,0 +1,18 @@
+https://petal-estimate-4e9.notion.site/HTTP-Deep-dive-d59b6336fa5a46daa56c21063578d400?pvs=74
+Create an HTTP Server
+It should have 4 routes
+http://localhost:3000/multiply?a=1&b=2
+http://localhost:3000/add?a=1&b=2
+http://localhost:3000/divide?a=1&b=2
+http://localhost:3000/subtract?a=1&b=2
+Inputs given at the end after ? are known as query parameters (usually used in GET requests)
+The way to get them in an HTTP route is by extracting them from the req argument (req.query.a , req.query.b)
+Steps to follow
+Initialize node project
+npm init -y
+​
+Install dependencies
+npm install express 
+​
+Create an empty index.js
+touch index.js

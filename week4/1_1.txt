@@ -1,0 +1,6 @@
+# package-lock.json
+
+The `package-lock.json` records the exact versions of all dependencies and their dependencies (sub-dependencies) that are installed at the time when `npm install` was run.
+
+**Consistency**: By locking down these versions, `package-lock.json` ensures that every time someone installs dependencies (e.g., by running `npm install`), they get the exact same versions of packages.
+This prevents discrepancies that can arise from different versions being installed in different environments.

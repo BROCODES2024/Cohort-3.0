@@ -1,0 +1,70 @@
+https://petal-estimate-4e9.notion.site/Authentincation-a4b43c7cc1d14535a7b5b366080095fa     
+# Tokens vs JWTs
+
+There is a problem with using `stateful` tokens.
+
+## Stateful
+
+By stateful here, we mean that we need to store these tokens in a variable right now (and eventually in a database). 
+
+## Problem
+
+The problem is that we need to `send a request to the database` every time the user wants to hit an `authenticated endpoint`
+
+## Solution
+
+JWTs
+# JWTs
+
+JWTs, or JSON Web Tokens, are a compact and self-contained way to represent information between two parties. 
+They are commonly used for authentication and information exchange in web applications.
+
+**JWTs are Stateless**: JWTs contain all the information needed to authenticate a request,
+so the server doesn’t need to store session data. All the `data` is stored in the token itself.
+
+Replace token logic with jwt
+Lets change the token logic that we had to use jwts
+Add the jsonwebtoken library as a dependency - https://www.npmjs.com/package/jsonwebtoken
+npm install jsonwebtoken
+
+Get rid of our generateToken function
+
+Create a JWT_SECRET variable
+const JWT_SECRET = "USER_APP";
+
+Create a jwt for the user instead of generating a token //code in .js file
+Notice we put the username inside the token. The jwt holds your state.
+You no longer need to store the token in the global users variable
+
+In the /me endpoint, use jwt.verify to verify the token
+
+the JWT_SECRET IS USED TO ENCRYPT AND DECRYPT
+
+
+# JWTs can be DECODED by anyone
+
+JWTs can be decoded by anyone. They can be `verified` by only the server that issued them.
+
+Ref - https://jwt.io/
+
+Try creating a jwt and decoding it on the website. You’ll notice it does decode. But that is fine
+
+## Comparision to a cheque.
+
+If you ever sign a `cheque`, you can show it to everyone and everyone can see that you are transferring $20 to a friend. But only the BANK `needs to verify` before debiting the users account.
+
+Doesnt matter if everyone sees the cheque, they cant do anything with this information. 
+
+But the `bank` can `verify` the signature and do whatever the end users asked to do
+
+JWTs can be coded by everyone
+
+JWTs can be verified by only the person who issued them (using the JWT secret)
+
+reason wanted to know about jwt methods:
+
+generate Token - jwt.sign( info,JWT_SECRET)
+verify a Token - jwt.verify(token,JWT_SECRET)
+decode a Token - jwt.decode(token)
+
+anyone can do decode but one the person who created the jwt can verify

@@ -1,0 +1,35 @@
+# cors - Cross origin resource sharing
+
+**Cross-Origin Resource Sharing (CORS)**
+security feature implemented by web browsers that controls how resources on a web server can be requested from another domain. 
+It's a crucial mechanism for managing `cross-origin` requests and ensuring secure interactions between `different origins` on the web.
+
+origin here means 
+ex: https://google.com
+most of the times there will be two servers one for frontend and one for backend
+backend example https://api.google.com(has express code in it)
+frontend has react code in it
+how do we get resource given by backend for frontend?
+using fetch or axios
+
+but there is a security vulnerability if i write code as say fetch(api.hdfcbank.com) i get all the bank details 
+so to solve these issue backend accept fetch/axios requests only from certain websites they trust
+for example api.google.com accept requests only from google.com
+
+so cors is not allowed by default in nodejs
+if we want to make it work we use cors middleware 
+
+to make html file look like domain:
+create a new folder named public and then move html file into it 
+cd public 
+and then npx serve in terminal
+and click on local link shown in terminal
+
+
+now when we ren both frontend and backend and the requests wont get accepted by backend stating cors error 
+but when we use post this doesnt happen
+ie cors happen only in browsers
+
+now how to solve this?
+use the cors middle ware
+npm i cors

@@ -1,0 +1,98 @@
+https://petal-estimate-4e9.notion.site/Hashing-password-b821927535394ab6aec423eb74234975
+# Hashing password
+
+## Why should you hash passwords?
+
+Password hashing is a technique used to securely store passwords in a way that makes them difficult to recover or misuse.
+Instead of storing the actual password, you store a hashed version of it. 
+
+## salt
+
+A popular approach to hashing passwords involves using a hashing algorithm that incorporates a salt—a random value added to the password before hashing.
+This prevents attackers from using precomputed tables (rainbow tables) to crack passwords.
+
+## bcrypt
+
+**Bcrypt**: It is a cryptographic hashing algorithm designed for securely hashing passwords.
+Developed by Niels Provos and David Mazières in 1999, bcrypt incorporates a salt and is designed to be computationally expensive, making brute-force attacks more difficult.
+
+extra points:
+first we signup in fronted backend hashes the password and stores it in db
+ex chetan = absbssbsbssbssbsbs....
+then hwo does the backend compares the plain password ie chetan with the hashed one?
+simple again rerun the hasing get the hashed password and compare it with the one present in the db
+
+but there is a catch here if two persons have same password then if we know one of their password we can the other one as well
+so we use salting to avoid that situation
+
+## Base code
+
+We’re starting from yesterday’s code - https://github.com/100xdevs-cohort-3/week-7-mongo
+
+## Adding password encryption
+
+- Install the `bcrypt` library - https://www.npmjs.com/package/bcrypt
+
+Update the /signup endpoint
+
+app.post("/signup", async function(req, res) {
+    const email = req.body.email;
+    const password = req.body.password;
+    const name = req.body.name;
+
+    const hasedPassword = await bcrypt.hash(password, 10);
+
+    await UserModel.create({
+        email: email,
+        password: hasedPassword,
+        name: name
+    });
+    
+    res.json({
+        message: "You are signed up"
+    })
+});
+
+Password format
+So, putting it all together:
+
+- **`$2b$`**: Version of bcrypt.
+- **`10$`**: Cost factor (saltRounds).
+- **`wyemvgfpjkEzg2dzuRyM9e`**: Salt value (base64 encoded).
+- **`LrQZnT69X/tj0KW/zM6TZhnrvT.TCne`**: Hashed password (base64 encoded).
+
+Update the signin function
+
+app.post("/signin", async function(req, res) {
+    const email = req.body.email;
+    const password = req.body.password;
+
+    const user = await UserModel.findOne({
+        email: email,
+    });
+
+    const passwordMatch = bcrypt.compare(password, user.password);
+    if (user && passwordMatch) {
+        const token = jwt.sign({
+            id: user._id.toString()
+        }, JWT_SECRET);
+
+        res.json({
+            token
+        })
+    } else {
+        res.status(403).json({
+            message: "Incorrect creds"
+        })
+    }
+});
+
+# Input validation
+
+In TypeScript, Zod is a library used for schema validation and parsing.
+It's designed to help developers define, validate, and manage data structures in a type-safe manner.
+Docs - https://zod.dev/
+why do we use zod?
+in our signup endpoint we assume that user send us a string but what if user send something else he might send an object or something else
+thats why we do input validation using zod
+in our code if a user sends an object through postman then our sever crashes

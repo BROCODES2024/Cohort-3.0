@@ -1,0 +1,18 @@
+Using middleware
+Express is a routing and middleware web framework that has minimal functionality of its own: An Express application is essentially a series of middleware function calls.
+
+Middleware functions are functions that have access to the request object (req), the response object (res), and the next middleware function in the application’s request-response cycle. The next middleware function is commonly denoted by a variable named next.
+
+Middleware functions can perform the following tasks:
+
+Execute any code.
+Make changes to the request and the response objects.
+End the request-response cycle.
+Call the next middleware function in the stack.
+
+Example: An Amusement park
+let there be a ticket purchase store, a ticket checking place and a ride
+why cant we combine all of them?
+imagine there are three rides then its waste of resources if we create middleware for each ride
+thats the reason we seperate them ie ticket purchase store, a ticket checking place can do the job for all the three rides present
+

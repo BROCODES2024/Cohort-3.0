@@ -1,0 +1,16 @@
+{
+  "name": "4_0cors",
+  "version": "1.0.0",
+  "main": "4_0cors.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2"
+  }
+}

@@ -1,0 +1,116 @@
+https://petal-estimate-4e9.notion.site/Node-js-Bun-and-JS-runtimes-a09a41ccd61c4f498e55750c9a1c9b34
+
+Node.js is an open-source JS runtime  that allows you to execute JavaScript code on the server side.
+It’s built on Chrome's V8 JavaScript engine.
+
+## Runtime?
+
+The environment where JavaScript code is executed. It could be
+
+1. On the server
+2. In the browser 
+3. On a small watch
+
+## V8 engine?
+
+The V8 engine is an open-source JavaScript engine developed by Google.
+It is used to execute JavaScript code in various environments, most notably in the Google Chrome web browser.
+
+Mozilla has their own JS engine - **SpiderMonkey**
+Safari - **JavaScriptCore**
+
+###
+To initialize a Node.js project locally, 
+Run the following command - 
+npm init -y(creates package.json)
+node index.js(runs the code index is name of the file (it can be chetan.js aswell))
+###
+
+
+Bun is faster than Nodejs
+
+
+
+###
+- Add a `script` in `package.json`
+
+```
+  "scripts": {
+    "start": "node index.js"
+  },
+```
+
+- Run `npm run start`
+
+###
+here script is used to make our work simple like i dont want to remember node index.js than i can give script as npm run start 
+if there is start2 (script) then we can say npm run start2
+
+# npm
+
+The full form of **NPM** is **Node Package Manager**. 
+
+It is a package manager for JavaScript, primarily used for managing libraries and dependencies in Node.js projects.
+NPM allows developers to easily install, update, and manage packages of reusable code
+
+Uses of npm
+Initializing a project:
+npm init
+​
+Running scripts:
+npm run test
+​
+Installing external dependencies:
+example:
+npm install chalk
+
+# Internal packages
+
+Node.js provides you some `packages` out of the box. Some common ones include
+
+1. fs - Filesystem
+2. path - Path related functions
+3. http - Create HTTP Servers
+
+### fs package
+
+The fs (Filesystem) package is used to read, write, update contents on the filesystem.
+
+# External packages
+
+These are packages written and maintained by other people. You just use their work in your project.
+
+For example
+
+1. Express
+2. chalk
+
+You can read more about them on their `npm page` - 
+
+https://www.npmjs.com/package/chalk
+
+Sometimes they are open source as well -
+
+https://github.com/chalk/chalk
+
+
+
+### Semantic Versioning Format
+
+Every external package is updated incrementally. A specific version looks something like follows - 
+
+```jsx
+"chalk": "^5.3.0"
+```
+
+The format is as follows - `MAJOR.MINOR.PATCH`
+
+- MAJOR -  Major version changes indicate significant updates or breaking changes.
+- MINOR -  Minor version changes signify the addition of new features or improvements in a backward-compatible manner.
+- PATCH - Patch version changes include backward-compatible bug fixes or minor improvements that address issues without adding new features or causing breaking changes.
+
+### Usage in `package.json`
+
+- `“chalk”: “^5.3.0”` - npm will install any version that is compatible with `5.3.0` but less than `6.0.0`. This includes versions like `5.3.1`, `5.4.0`, `5.5.0`, etc.
+- `“chalk”: “5.3.0”` - Will install the exact version
+- `"chalk": "latest"` - Will install the latest version

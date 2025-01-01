@@ -1,0 +1,33 @@
+https://100x-b-mcdn.akamai.net.in/cohort-2-slides/express2.pdf
+
+HTTP
+lets you create a hostpital where people can
+Come and find you
+Question - How do I expose my doctor functionality
+To other people?
+How can they find me?
+Ans - By creating an HTTP Server
+
+Question - How do I create an HTTP Server?
+Ans - Express
+
+Request methods
+1. GET - Going for a consultation to get a check up
+2. POST - Going to get a new kidney inserted
+3. PUT - Going to get a kidney replaced
+4. DELETE - Going to get a kidney removed
+
+Status codes
+1. 200 - Everything went fine
+2. 404 - Doctor is not in the hospital
+3. 500 - Mid surgery light went away
+4. 411 - Inputs were incorrect, wrong person came to surgery
+5. 403 => you were not allowed in the hospital
+
+You need to create 4 routes (4 things that the hospital can do)
+1. GET - User can check how many kidneys they have and their health
+2. POST - User can add a new kidney
+3. PUT - User can replace a kidney, make it healthy
+4. DELETE - User can remove a kidney
+
+after running the code use ipconfig:3000 u can see it in your mobile phone as well
