@@ -1,9 +1,10 @@
 const bcrypt = require("bcrypt");
 const express = require("express");
-const { usermodel } = require("../db");
+const { usermodel, purchasemodel } = require("../db");
 const jwt = require("jsonwebtoken");
 const Router = express.Router;
 const { z } = require("zod");
+const { usermiddleware } = require("../middlewares/usermw");
 const usersecret = process.env.jwtsecuser;
 //combining abovve two lines
 //const {Router} = require("express");
@@ -84,9 +85,13 @@ userrouter.post("/signin", async (req, res) => {
     });
   }
 });
-userrouter.get("/purchases", async (req, res) => {
+userrouter.get("/purchases", usermiddleware, async (req, res) => {
+  const userId = req.userId;
+  const purchases = await purchasemodel.find({
+    userId,
+  });
   res.json({
-    msg: "hi",
+    purchases,
   });
 });
 
