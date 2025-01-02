@@ -1,6 +1,8 @@
 const { Router } = require("express");
+const { z } = require("zod");
 const adminrouter = Router();
 const { adminmodel } = require("../db");
+
 adminrouter.post("/signup", async (req, res) => {
   res.json({
     msg: "hi",
@@ -11,6 +13,8 @@ adminrouter.post("/signin", async (req, res) => {
     msg: "hi",
   });
 });
+
+//look at harkirat code and make changes
 adminrouter.post("/create-course", async (req, res) => {
   res.json({
     msg: "hi",
