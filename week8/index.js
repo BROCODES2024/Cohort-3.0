@@ -6,6 +6,7 @@ const { courserouter } = require("./routes/course");
 const { adminrouter } = require("./routes/admin");
 
 const app = express();
+app.use(express.json());
 //so here we are actually structured the code properly
 //ie all the user endpoints in one file and course end points in other and we are importing them
 //for example /api/v1/user is same for all routes so we kept it in index file and then kept the routes in user.js file
