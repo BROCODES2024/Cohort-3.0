@@ -1,9 +1,12 @@
 const bcrypt = require("bcrypt");
 const { Router } = require("express");
 const { adminmodel } = require("../db");
+const { coursemodel } = require("../db");
+
 const jwt = require("jsonwebtoken");
 const adminrouter = Router();
 const { z } = require("zod");
+const { adminmiddleware } = require("../middlewares/adminmw");
 const adminsecret = process.env.jwtsecadmin;
 
 adminrouter.post("/signup", async (req, res) => {
@@ -79,19 +82,50 @@ adminrouter.post("/signin", async (req, res) => {
 });
 
 //look at harkirat code and make changes
-adminrouter.post("/create-course", async (req, res) => {
+adminrouter.post("/create-course", adminmiddleware, async (req, res) => {
+  const adminId = req.adminId;
+  const { title, description, imageurl, price } = req.body;
+  const course = await coursemodel.create({
+    title: title,
+    description: description,
+    imageurl: imageurl,
+    price: price,
+    creatorid: adminId,
+  });
   res.json({
-    msg: "hi",
+    message: "course created",
+    courseid: course._id,
   });
 });
-adminrouter.put("/add-course", async (req, res) => {
+adminrouter.put("/update-course", adminmiddleware, async (req, res) => {
+  const adminId = req.adminId;
+  const { title, description, imageurl, price, courseid } = req.body;
+
+  const course = await coursemodel.updateOne(
+    {
+      _id: courseid,
+      creatorid: adminId,
+    },
+    {
+      title: title,
+      description: description,
+      imageurl: imageurl,
+      price: price,
+    }
+  );
   res.json({
-    msg: "hi",
+    message: "course updated",
+    courseid: course._id,
   });
 });
-adminrouter.get("/course/bulk", async (req, res) => {
+adminrouter.get("/course/bulk", adminmiddleware, async (req, res) => {
+  const adminId = req.adminId;
+  const courses = await coursemodel.find({
+    creatorid: adminId,
+  });
   res.json({
-    msg: "hi",
+    message: "course updated",
+    courses,
   });
 });
 module.exports = {
